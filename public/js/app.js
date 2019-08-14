@@ -1738,10 +1738,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['bitems'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      categoryItems: []
+    };
+  },
+  methods: {
+    selectFood: function selectFood(items) {
+      var _this = this;
+
+      this.categoryItems = [];
+      items.forEach(function (item) {
+        if (item.category == 'food') {
+          _this.categoryItems.push(item);
+        }
+
+        return _this.categoryItems;
+      });
+    }
   }
 });
 
@@ -19439,21 +19474,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.bitems, function(item) {
-      return _c("div", { key: item.id }, [
-        _c("p", [
-          _vm._v(
-            _vm._s(item.name) + "\t" + _vm._s(_vm._f("monies")(item.budgeted))
+  return _c("div", [
+    _c(
+      "table",
+      { staticClass: "w-full" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.bitems, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: item.category == "food",
+                      expression: "item.category=='food'"
+                    }
+                  ],
+                  staticClass: "flex-grow"
+                },
+                [_vm._v(_vm._s(item.name))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: item.category == "food",
+                      expression: "item.category=='food'"
+                    }
+                  ],
+                  staticClass: "w-32 text-center"
+                },
+                [_vm._v("$200.00")]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: item.category == "food",
+                      expression: "item.category=='food'"
+                    }
+                  ],
+                  staticClass: "w-32 text-center"
+                },
+                [_vm._v(_vm._s(_vm._f("monies")(item.planned)))]
+              )
+            ]
           )
-        ])
-      ])
-    }),
-    0
-  )
+        }),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._l(_vm.bitems, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: item.category == "transportation",
+                      expression: "item.category=='transportation'"
+                    }
+                  ],
+                  staticClass: "flex-grow"
+                },
+                [_vm._v(_vm._s(item.name))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: item.category == "transportation",
+                      expression: "item.category=='transportation'"
+                    }
+                  ],
+                  staticClass: "w-32 text-center"
+                },
+                [_vm._v("$200.00")]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: item.category == "transportation",
+                      expression: "item.category=='transportation'"
+                    }
+                  ],
+                  staticClass: "w-32 text-center"
+                },
+                [_vm._v(_vm._s(_vm._f("monies")(item.planned)))]
+              )
+            ]
+          )
+        })
+      ],
+      2
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow" }, [_vm._v("Food")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Received")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow" }, [_vm._v("Transportation")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Received")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -31691,17 +31862,17 @@ var app = new Vue({
       id: 1,
       name: 'restaurants',
       category: 'food',
-      budgeted: 12500
+      planned: 12500
     }, {
       id: 2,
       name: 'gas',
       category: 'transportation',
-      budgeted: 15000
+      planned: 15000
     }, {
       id: 3,
       name: 'grocery',
       category: 'food',
-      budgeted: 13000
+      planned: 13000
     }],
     transactions: [{
       id: 1,
