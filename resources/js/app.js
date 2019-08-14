@@ -21,7 +21,14 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('item-component', require('./components/ItemComponent.vue').default);
+Vue.component('transaction-component', require('./components/TransactionComponent.vue').default);
 
+
+Vue.filter('monies', function(value) {
+	let money = (value/100).toFixed(2);
+	return `$${money}`;
+
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,4 +38,17 @@ Vue.component('item-component', require('./components/ItemComponent.vue').defaul
 
 const app = new Vue({
     el: '#app',
+	data: {
+		bitems : [
+			{id : 1, name: 'restaurants', category: 'food', budgeted:12500},
+			{id : 2, name: 'gas', category: 'transportation', budgeted: 15000},
+			{id : 3, name: 'grocery', category: 'food', budgeted: 13000}
+		],
+		transactions : [
+			{id : 1, name:'Kroger', amount:5732, added_at:'2019/10/31', bitem_id: 1 },
+			{id : 2, name:'Walmart', amount:5732, added_at:'2019/10/31', bitem_id: 1 },
+			{id : 3, name:'Sam\'s club', amount:5732, added_at:'2019/10/31', bitem_id:2 }		
+		]
+	},
+	
 });
