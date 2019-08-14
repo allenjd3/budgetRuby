@@ -16,6 +16,12 @@
 			<div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
 				<transaction-component class="p-4" v-bind:transactions="transactions"></transaction-component>
 			</div>
+			<div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+				<item-creation-component class="p-4"> </item-creation-component>
+			</div>
+			<div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+				<transaction-creation-component class="p-4"> </transaction-creation-component>
+			</div>
         </div>
     </div>
 @endsection

@@ -22,6 +22,8 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('item-component', require('./components/ItemComponent.vue').default);
 Vue.component('transaction-component', require('./components/TransactionComponent.vue').default);
+Vue.component('item-creation-component', require('./components/ItemCreationComponent.vue').default);
+Vue.component('transaction-creation-component', require('./components/TransactionCreationComponent.vue').default);
 
 
 Vue.filter('monies', function(value) {
