@@ -2,24 +2,24 @@
 	<div>
 		<table class="w-full">
 			<tr class="flex justify-between">
-				<th class="flex-grow">Food</th>
-				<th class="w-32 text-center">Planned</th>
-				<th class="w-32 text-center">Received</th>
+				<th class="flex-grow text-left py-4">Food</th>
+				<th class="w-32 py-4">Planned</th>
+				<th class="w-32 py-4">Actual</th>
 			</tr>
-			<tr class="flex justify-between" v-for="item in bitems" v-bind:key="item.id">
-				<td v-show="item.category=='food'" class="flex-grow">{{item.name}}</td>
-				<td v-show="item.category=='food'" class="w-32 text-center">$200.00</td>
-				<td v-show="item.category=='food'" class="w-32 text-center">{{item.planned | monies}}</td>
+			<tr class="flex justify-between" v-for="item in foodItems" v-bind:key="item.id">
+				<td class="flex-grow text-left">{{item.name}}</td>
+				<td class="w-32 text-center">{{item.planned | monies}}</td>
+				<td class="w-32 text-center font-bold" :class="receivedColor(item)">{{item.received | monies}}</td>
 			</tr>
 			<tr class="flex justify-between">
-				<th class="flex-grow">Transportation</th>
-				<th class="w-32 text-center">Planned</th>
-				<th class="w-32 text-center">Received</th>
+				<th class="flex-grow text-left py-4">Transportation</th>
+				<th class="w-32 py-4">Planned</th>
+				<th class="w-32 py-4">Actual</th>
 			</tr>
-			<tr class="flex justify-between" v-for="item in bitems" v-bind:key="item.id">
-				<td v-show="item.category=='transportation'" class="flex-grow">{{item.name}}</td>
-				<td v-show="item.category=='transportation'" class="w-32 text-center">$200.00</td>
-				<td v-show="item.category=='transportation'" class="w-32 text-center">{{item.planned | monies}}</td>
+			<tr class="flex justify-between" v-for="item in transportationItems" v-bind:key="item.id">
+				<td class="flex-grow text-left">{{item.name}}</td>
+				<td class="w-32 text-center">{{item.planned | monies}}</td>
+				<td class="w-32 text-center font-bold" :class="receivedColor(item)">{{item.received | monies}}</td>
 			</tr>
 		</table>
 	</div>
@@ -27,21 +27,15 @@
 
 <script>
     export default {
-		props: ['bitems'],
-		data() {
-			return {
-				categoryItems : []
-			}
-		},
+		props: ['foodItems', 'transportationItems'],
 		methods: {
-			selectFood(items) {
-				this.categoryItems = [];
-				items.forEach(item => {
-				 	if(item.category == 'food'){
-						this.categoryItems.push(item);
-					}		
-					return this.categoryItems;
-				});
+			receivedColor(item) {
+					if(item.received > item.planned) {
+						return "text-red-600";
+					}
+					else {
+						return "text-green-600";
+					}
 			}
 		}
     }

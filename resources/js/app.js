@@ -39,10 +39,12 @@ Vue.filter('monies', function(value) {
 const app = new Vue({
     el: '#app',
 	data: {
-		bitems : [
-			{id : 1, name: 'restaurants', category: 'food', planned:12500},
-			{id : 2, name: 'gas', category: 'transportation', planned: 15000},
-			{id : 3, name: 'grocery', category: 'food', planned: 13000}
+		foodItems: [
+			{id : 1, name: 'restaurants', category: 'food', planned:12500, received: 12423},
+			{id : 3, name: 'grocery', category: 'food', planned: 13000, received: 13143}
+		],
+		transportationItems: [
+			{id : 2, name: 'gas', category: 'transportation', planned: 15000, received: 20000},
 		],
 		transactions : [
 			{id : 1, name:'Kroger', amount:5732, added_at:'2019/10/31', bitem_id: 1 },

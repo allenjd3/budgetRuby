@@ -1758,24 +1758,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['bitems'],
-  data: function data() {
-    return {
-      categoryItems: []
-    };
-  },
+  props: ['foodItems', 'transportationItems'],
   methods: {
-    selectFood: function selectFood(items) {
-      var _this = this;
-
-      this.categoryItems = [];
-      items.forEach(function (item) {
-        if (item.category == 'food') {
-          _this.categoryItems.push(item);
-        }
-
-        return _this.categoryItems;
-      });
+    receivedColor: function receivedColor(item) {
+      if (item.received > item.planned) {
+        return "text-red-600";
+      } else {
+        return "text-green-600";
+      }
     }
   }
 });
@@ -19481,57 +19471,26 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _vm._l(_vm.bitems, function(item) {
+        _vm._l(_vm.foodItems, function(item) {
           return _c(
             "tr",
             { key: item.id, staticClass: "flex justify-between" },
             [
-              _c(
-                "td",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: item.category == "food",
-                      expression: "item.category=='food'"
-                    }
-                  ],
-                  staticClass: "flex-grow"
-                },
-                [_vm._v(_vm._s(item.name))]
-              ),
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(item.planned)))
+              ]),
               _vm._v(" "),
               _c(
                 "td",
                 {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: item.category == "food",
-                      expression: "item.category=='food'"
-                    }
-                  ],
-                  staticClass: "w-32 text-center"
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
                 },
-                [_vm._v("$200.00")]
-              ),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: item.category == "food",
-                      expression: "item.category=='food'"
-                    }
-                  ],
-                  staticClass: "w-32 text-center"
-                },
-                [_vm._v(_vm._s(_vm._f("monies")(item.planned)))]
+                [_vm._v(_vm._s(_vm._f("monies")(item.received)))]
               )
             ]
           )
@@ -19539,57 +19498,26 @@ var render = function() {
         _vm._v(" "),
         _vm._m(1),
         _vm._v(" "),
-        _vm._l(_vm.bitems, function(item) {
+        _vm._l(_vm.transportationItems, function(item) {
           return _c(
             "tr",
             { key: item.id, staticClass: "flex justify-between" },
             [
-              _c(
-                "td",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: item.category == "transportation",
-                      expression: "item.category=='transportation'"
-                    }
-                  ],
-                  staticClass: "flex-grow"
-                },
-                [_vm._v(_vm._s(item.name))]
-              ),
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(item.planned)))
+              ]),
               _vm._v(" "),
               _c(
                 "td",
                 {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: item.category == "transportation",
-                      expression: "item.category=='transportation'"
-                    }
-                  ],
-                  staticClass: "w-32 text-center"
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
                 },
-                [_vm._v("$200.00")]
-              ),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: item.category == "transportation",
-                      expression: "item.category=='transportation'"
-                    }
-                  ],
-                  staticClass: "w-32 text-center"
-                },
-                [_vm._v(_vm._s(_vm._f("monies")(item.planned)))]
+                [_vm._v(_vm._s(_vm._f("monies")(item.received)))]
               )
             ]
           )
@@ -19605,11 +19533,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow" }, [_vm._v("Food")]),
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [_vm._v("Food")]),
       _vm._v(" "),
-      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Planned")]),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
       _vm._v(" "),
-      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Received")])
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
     ])
   },
   function() {
@@ -19617,11 +19545,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow" }, [_vm._v("Transportation")]),
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [
+        _vm._v("Transportation")
+      ]),
       _vm._v(" "),
-      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Planned")]),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
       _vm._v(" "),
-      _c("th", { staticClass: "w-32 text-center" }, [_vm._v("Received")])
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
     ])
   }
 ]
@@ -31858,21 +31788,25 @@ Vue.filter('monies', function (value) {
 var app = new Vue({
   el: '#app',
   data: {
-    bitems: [{
+    foodItems: [{
       id: 1,
       name: 'restaurants',
       category: 'food',
-      planned: 12500
-    }, {
-      id: 2,
-      name: 'gas',
-      category: 'transportation',
-      planned: 15000
+      planned: 12500,
+      received: 12423
     }, {
       id: 3,
       name: 'grocery',
       category: 'food',
-      planned: 13000
+      planned: 13000,
+      received: 13143
+    }],
+    transportationItems: [{
+      id: 2,
+      name: 'gas',
+      category: 'transportation',
+      planned: 15000,
+      received: 20000
     }],
     transactions: [{
       id: 1,
