@@ -1,9 +1,15 @@
 <template>
-	<div class="mt-4">
-		<h3 class="text-2xl">Transactions</h3>
-    	<div class="" v-for="t in transactions" v-bind:key="t.id">
-				<p>{{t.name}}	{{t.amount | monies}}</p>
-    	</div>
+	<div>
+		<table class="w-full">
+			<tr class="flex justify-between">
+				<th class="flex-grow text-left py-4">Transactions</th>
+				<th class="w-32 py-4">Amount</th>
+			</tr>
+			<tr class="flex justify-between" v-for="t in transactions" v-bind:key="t.id">
+				<td class="flex-grow text-left">{{t.name}}</td>
+				<td class="w-32 text-center">{{t.amount | monies}}</td>
+			</tr>
+		</table>
 	</div>
 </template>
 

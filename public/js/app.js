@@ -1800,6 +1800,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -1813,6 +1817,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1837,6 +1847,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -19651,24 +19664,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-2/3 mx-auto relative" }, [
+    return _c("div", { staticClass: "w-2/3 mx-auto" }, [
       _c("h3", { staticClass: "text-xl text-center" }, [
         _vm._v("Item Creation")
       ]),
       _vm._v(" "),
-      _c("form", { staticClass: "w-full" }, [
+      _c("form", { staticClass: "flex flex-col" }, [
         _c("div", { staticClass: "my-4 flex items-center" }, [
           _c(
             "label",
             {
-              staticClass: "w-24 inline-block text-right pr-2",
+              staticClass:
+                "w-1/4 inline-block text-right pr-2 text-gray-800 font-bold",
               attrs: { for: "name" }
             },
             [_vm._v("Name:")]
           ),
           _vm._v(" "),
           _c("input", {
-            staticClass: "border p-2 w-full",
+            staticClass: "border border-gray-400 p-2 w-3/4",
             attrs: { id: "name", type: "text" }
           })
         ]),
@@ -19677,24 +19691,29 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "w-24 inline-block text-right pr-2",
+              staticClass:
+                "w-1/4 inline-block text-right pr-2 text-gray-800 font-bold",
               attrs: { for: "planned" }
             },
             [_vm._v("Planned:")]
           ),
           _vm._v(" "),
           _c("input", {
-            staticClass: "border p-2 w-full",
+            staticClass: "border border-gray-400 p-2 w-3/4",
             attrs: { id: "planned", type: "text" }
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-4 h-8" }, [
-          _c("input", {
-            staticClass:
-              "rounded py-2 px-4 bg-blue-600 text-gray-100 font-bold absolute bottom-0 right-0",
-            attrs: { type: "submit", value: "Add Item" }
-          })
+        _c("div", { staticClass: "my-4 flex items-center h-8" }, [
+          _c("div", { staticClass: "w-1/4" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-3/4" }, [
+            _c("input", {
+              staticClass:
+                "rounded py-2 px-4 bg-blue-800 text-gray-100 font-bold",
+              attrs: { type: "submit", value: "Add Item" }
+            })
+          ])
         ])
       ])
     ])
@@ -19721,24 +19740,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "mt-4" },
-    [
-      _c("h3", { staticClass: "text-2xl" }, [_vm._v("Transactions")]),
-      _vm._v(" "),
-      _vm._l(_vm.transactions, function(t) {
-        return _c("div", { key: t.id }, [
-          _c("p", [
-            _vm._v(_vm._s(t.name) + "\t" + _vm._s(_vm._f("monies")(t.amount)))
+  return _c("div", [
+    _c(
+      "table",
+      { staticClass: "w-full" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.transactions, function(t) {
+          return _c("tr", { key: t.id, staticClass: "flex justify-between" }, [
+            _c("td", { staticClass: "flex-grow text-left" }, [
+              _vm._v(_vm._s(t.name))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "w-32 text-center" }, [
+              _vm._v(_vm._s(_vm._f("monies")(t.amount)))
+            ])
           ])
-        ])
-      })
-    ],
-    2
-  )
+        })
+      ],
+      2
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [
+        _vm._v("Transactions")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Amount")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -19767,24 +19805,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-2/3 mx-auto relative" }, [
+    return _c("div", { staticClass: "w-2/3 mx-auto" }, [
       _c("h3", { staticClass: "text-xl text-center" }, [
         _vm._v("Transaction Creation")
       ]),
       _vm._v(" "),
-      _c("form", { staticClass: "w-full" }, [
+      _c("form", { staticClass: "w-full flex flex-col" }, [
         _c("div", { staticClass: "my-4 flex items-center" }, [
           _c(
             "label",
             {
-              staticClass: "w-24 inline-block text-right pr-2",
+              staticClass:
+                "text-gray-800 font-bold w-1/4 inline-block text-right pr-2",
               attrs: { for: "name" }
             },
             [_vm._v("Name:")]
           ),
           _vm._v(" "),
           _c("input", {
-            staticClass: "border p-2 w-full",
+            staticClass: "border p-2 w-3/4 border-gray-400",
             attrs: { id: "name", type: "text" }
           })
         ]),
@@ -19793,14 +19832,15 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "w-24 inline-block text-right pr-2",
+              staticClass:
+                "text-gray-800 font-bold w-1/4 inline-block text-right pr-2",
               attrs: { for: "amount" }
             },
             [_vm._v("Amount:")]
           ),
           _vm._v(" "),
           _c("input", {
-            staticClass: "border p-2 w-full",
+            staticClass: "border p-2 w-3/4 border-gray-400",
             attrs: { id: "amount", type: "text" }
           })
         ]),
@@ -19809,24 +19849,29 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "w-24 inline-block text-right pr-2",
+              staticClass:
+                "text-gray-800 font-bold w-1/4 inline-block text-right pr-2",
               attrs: { for: "added-at" }
             },
             [_vm._v("Added At:")]
           ),
           _vm._v(" "),
           _c("input", {
-            staticClass: "border p-2 w-full",
+            staticClass: "border border-gray-400 p-2 w-3/4 text-gray-700",
             attrs: { id: "added-at", type: "date" }
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-4 h-8" }, [
-          _c("input", {
-            staticClass:
-              "rounded py-2 px-4 bg-blue-600 text-gray-100 font-bold absolute bottom-0 right-0",
-            attrs: { type: "submit", value: "Add Transaction" }
-          })
+        _c("div", { staticClass: "my-4 flex items-center" }, [
+          _c("div", { staticClass: "text-right font-bold w-1/4 pr-2" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-3/4" }, [
+            _c("input", {
+              staticClass:
+                "rounded py-2 px-4 bg-blue-800 text-gray-100 font-bold",
+              attrs: { type: "submit", value: "Add Transaction" }
+            })
+          ])
         ])
       ])
     ])
@@ -32051,13 +32096,13 @@ var app = new Vue({
     transactions: [{
       id: 1,
       name: 'Kroger',
-      amount: 5732,
+      amount: 12334,
       added_at: '2019/10/31',
       bitem_id: 1
     }, {
       id: 2,
       name: 'Walmart',
-      amount: 5732,
+      amount: 1234,
       added_at: '2019/10/31',
       bitem_id: 1
     }, {

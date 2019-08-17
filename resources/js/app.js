@@ -49,8 +49,8 @@ const app = new Vue({
 			{id : 2, name: 'gas', category: 'transportation', planned: 15000, received: 20000},
 		],
 		transactions : [
-			{id : 1, name:'Kroger', amount:5732, added_at:'2019/10/31', bitem_id: 1 },
-			{id : 2, name:'Walmart', amount:5732, added_at:'2019/10/31', bitem_id: 1 },
+			{id : 1, name:'Kroger', amount:12334, added_at:'2019/10/31', bitem_id: 1 },
+			{id : 2, name:'Walmart', amount:1234, added_at:'2019/10/31', bitem_id: 1 },
 			{id : 3, name:'Sam\'s club', amount:5732, added_at:'2019/10/31', bitem_id:2 }		
 		]
 	},
