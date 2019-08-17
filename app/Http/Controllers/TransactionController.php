@@ -11,8 +11,17 @@ class TransactionController extends Controller
 	{
 	    return Transaction::all();
 	}
-	public function show(Transaction $transaction)
+	public function show($id)
 	{
+		$transaction = Transaction::findOrFail($id);
 	    return $transaction; 
+	}
+	public function store(Request $request)
+	{
+	   $transaction = Transaction::create($request->all()); 
+	   return response()->json([
+	   		'created'=>true,
+			'transaction'=>$transaction
+	   ], 201);
 	}
 }

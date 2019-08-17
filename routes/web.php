@@ -19,4 +19,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/api/transaction', 'TransactionController@index');
 Route::get('/api/{id}/transaction', 'TransactionController@show');
+Route::post('/api/transaction', 'TransactionController@store');
 
