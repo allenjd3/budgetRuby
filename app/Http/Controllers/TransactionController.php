@@ -24,4 +24,14 @@ class TransactionController extends Controller
 			'transaction'=>$transaction
 	   ], 201);
 	}
+	public function delete($id)
+	{
+	   	$transaction = Transaction::findOrFail($id);
+
+		if($transaction->delete()) {	
+		
+			return response()->json(['deleted'=>true], 202);
+		}
+		
+	}
 }

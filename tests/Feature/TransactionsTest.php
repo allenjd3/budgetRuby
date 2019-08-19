@@ -41,4 +41,16 @@ class TransactionsTest extends TestCase
 		$response->assertStatus(200);
 		$response->assertJson($transaction->first()->toArray());
 	}
+	/** @test */
+	public function a_user_can_delete_a_transaction()
+	{
+		$this->withoutExceptionHandling();
+	    $transaction = factory(Transaction::class, 1)->create();    
+
+		$response = $this->json('DELETE', 'api/1/transaction');
+		//$response->assertStatus(202);
+		$response->assertJson([
+			'deleted'=>true	
+		]);
+	}
 }
