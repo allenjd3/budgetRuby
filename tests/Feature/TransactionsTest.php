@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Bitem;
 use App\Transaction;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -41,6 +42,7 @@ class TransactionsTest extends TestCase
 		$response->assertStatus(200);
 		$response->assertJson($transaction->first()->toArray());
 	}
+	
 	/** @test */
 	public function a_user_can_delete_a_transaction()
 	{
@@ -52,5 +54,30 @@ class TransactionsTest extends TestCase
 		$response->assertJson([
 			'deleted'=>true	
 		]);
+	}
+
+	/** @test */
+	public function a_user_can_edit_a_transaction()
+	{
+		$this->withoutExceptionHandling();
+	     $transaction = factory(Transaction::class, 1)->create();    
+		 $transaction2 = factory(Transaction::class)->make(['name'=>'MyTransaction']);
+
+		 $response = $this->json('PUT', 'api/1/transaction', $transaction2->first()->toArray()); 
+		 $response->assertStatus(202);
+		 $response->assertJson([
+				 'updated' => true,
+				 'transaction' => $transaction2->first()->toArray() 
+				 
+		 ]);
+			
+	}
+	/** @test */
+	public function a_transaction_belongs_to_a_bitem()
+	{
+		$transaction = factory(Transaction::class)->create();
+		$item = factory(Bitem::class)->create();
+		$this->assertInstanceOf(Bitem::class, $transaction->item);
+
 	}
 }

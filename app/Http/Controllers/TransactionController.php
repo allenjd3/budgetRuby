@@ -34,4 +34,22 @@ class TransactionController extends Controller
 		}
 		
 	}
+
+	public function update(Request $request, $id)
+	{
+	   	$transaction = Transaction::findOrFail($id); 
+	    $transaction->name = $request->name;	
+		$transaction->amount = $request->amount;
+		$transaction->added_at = $request->added_at;
+		$transaction->bitem_id = $request->bitem_id;
+
+		if($transaction->save()){
+			return response()->json([
+				'updated'=>true,
+				'transaction'=> $transaction				
+			], 202);
+		}
+	   	 
+	}
+ 
 }
