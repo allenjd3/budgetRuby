@@ -11,6 +11,7 @@ $factory->define(Transaction::class, function (Faker $faker) {
 		'name'=> $faker->name,
 		'amount'=>rand(1, 6000),
 		'added_at'=>Carbon::now()->subDay(30),
+		'user_id'=>1,
 		'bitem_id'=>1		
     ];
 });

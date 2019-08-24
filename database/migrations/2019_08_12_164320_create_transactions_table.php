@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
 			$table->integer('amount');
 			$table->date('added_at');
 			$table->integer('bitem_id');
+			$table->integer('user_id');
             $table->timestamps();
         });
     }

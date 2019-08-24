@@ -7,15 +7,21 @@ use App\Transaction;
 
 class TransactionController extends Controller
 {
+
+	public function __construct() {
+		$this->middleware('auth');
+	}
 	public function index()
 	{
 	    return Transaction::all();
 	}
+
 	public function show($id)
 	{
 		$transaction = Transaction::findOrFail($id);
 	    return $transaction; 
 	}
+
 	public function store(Request $request)
 	{
 	   $transaction = Transaction::create($request->all()); 
@@ -24,6 +30,7 @@ class TransactionController extends Controller
 			'transaction'=>$transaction
 	   ], 201);
 	}
+
 	public function delete($id)
 	{
 	   	$transaction = Transaction::findOrFail($id);
@@ -32,7 +39,6 @@ class TransactionController extends Controller
 		
 			return response()->json(['deleted'=>true], 202);
 		}
-		
 	}
 
 	public function update(Request $request, $id)
@@ -49,7 +55,5 @@ class TransactionController extends Controller
 				'transaction'=> $transaction				
 			], 202);
 		}
-	   	 
 	}
- 
 }

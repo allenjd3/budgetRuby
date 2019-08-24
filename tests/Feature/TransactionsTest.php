@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Bitem;
 use App\Transaction;
+use App\User;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TransactionsTest extends TestCase
 {
-	use DatabaseMigrations;
+	use DatabaseMigrations, WithoutMiddleware;
 
 	/** @test */
 	public function a_user_can_view_a_transaction()
@@ -37,7 +39,7 @@ class TransactionsTest extends TestCase
 	public function a_user_can_show_a_transaction()
 	{
 		$this->withoutExceptionHandling();
-	  	$transaction = factory(Transaction::class, 1)->create();    
+		$transaction = factory(Transaction::class, 1)->create();    
 		$response = $this->json('GET', 'api/1/transaction');
 		$response->assertStatus(200);
 		$response->assertJson($transaction->first()->toArray());
@@ -50,7 +52,7 @@ class TransactionsTest extends TestCase
 	    $transaction = factory(Transaction::class, 1)->create();    
 
 		$response = $this->json('DELETE', 'api/1/transaction');
-		//$response->assertStatus(202);
+		$response->assertStatus(202);
 		$response->assertJson([
 			'deleted'=>true	
 		]);
@@ -80,4 +82,32 @@ class TransactionsTest extends TestCase
 		$this->assertInstanceOf(Bitem::class, $transaction->item);
 
 	}
+	/** @test */
+	public function a_transaction_belongs_to_a_user()
+	{
+	   	$user = factory(User::class)->create(); 
+		$user = $user->fresh();
+		$transaction = factory(Transaction::class)->create([
+				'user_id'=>$user->id
+		]);
+		$this->assertEquals($user->id, $transaction->user_id);
+		$this->assertEquals($user, $transaction->user);
+	}
+
+	/** @test */
+	public function a_user_cannot_view_another_users_transactions()
+	{
+		$this->withoutExceptionHandling();
+	   	$user1 = factory(User::class)->create(); 
+		$user2 = factory(User::class)->create();
+		$user2 = $user2->fresh();
+		$user1 = $user1->fresh();
+		$transaction = factory(Transaction::class)->create([
+			'user_id'=>$user1->id	
+		]);
+
+//		$this->assertFalse($user2->can('view', $transaction));
+		$this->assertTrue($user1->can('view', $transaction));
+	}
 }
+

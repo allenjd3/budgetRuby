@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Bitem;
 use App\Transaction;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -63,5 +64,17 @@ class BitemTest extends TestCase
 	    $item = factory(Bitem::class, 2)->create(); 
 		$transactions = factory(Transaction::class, 2)->create();
 		$this->assertCount(2, $item->first()->transactions);
+	}
+	/** @test */
+	public function a_bitem_belongs_to_a_user()
+	{
+		$user = factory(User::class)->create();	    
+		$user = $user->fresh();
+		$item = factory(Bitem::class)->create([
+			'user_id'=>$user->id	
+		]);
+		$item = $item->fresh();
+		$this->assertEquals($user->id, $item->user_id);
+		$this->assertEquals($user, $item->user);
 	}
 }
