@@ -17,4 +17,10 @@ class Transaction extends Model
    {
       	return $this->belongsTo(User::class); 
    }
+
+   public function scopeOnlyUser($query, $user)
+   {
+
+		  return $query->where('user_id', $user->id);
+   }
 }
