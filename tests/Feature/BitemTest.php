@@ -17,17 +17,19 @@ class BitemTest extends TestCase
 	public function a_user_can_get_all_bitems()
 	{
 	   $this->withoutExceptionHandling();
+	   $user = factory(User::class)->create();
 	   $item = factory(Bitem::class, 2)->create(); 
-	   $request = $this->json('GET', '/api/bitem'); 
+	   $request = $this->actingAs($user)->json('GET', '/api/bitem'); 
 	   $request->assertJson($item->toArray());
 	}
 
 	/** @test **/
-	public function a_user_can_get_show_a_bitem()
+	public function a_user_can_show_a_bitem()
 	{
 	   $this->withoutExceptionHandling();
+	   $user = factory(User::class)->create();
 	   $item = factory(Bitem::class, 2)->create(); 
-	   $request = $this->json('GET', '/api/1/bitem');
+	   $request = $this->actingAs($user)->json('GET', '/api/1/bitem');
 	   $request->assertJson($item->first()->toArray());
 	}
 
@@ -36,9 +38,10 @@ class BitemTest extends TestCase
 	{
 	     
 		$this->withoutExceptionHandling();
+	    $user = factory(User::class)->create();
 	    $item = factory(Bitem::class, 2)->create(); 
 		$item2 = factory(Bitem::class, 1)->make(['name'=>'NewName']);
-		$request = $this->json('PUT', '/api/1/bitem', $item2->first()->toArray());
+		$request = $this->actingAs($user)->json('PUT', '/api/1/bitem', $item2->first()->toArray());
 		$request->assertJson([
 			'updated'=>true,	
 			'bitem'=>[
@@ -52,8 +55,9 @@ class BitemTest extends TestCase
 	public function a_user_can_delete_a_bitem()
 	{
 		$this->withoutExceptionHandling();
+	    $user = factory(User::class)->create();
 		$item = factory(Bitem::class, 2)->create();
-		$request= $this->json('delete', '/api/1/bitem');
+		$request= $this->actingAs($user)->json('delete', '/api/1/bitem');
 		$request->assertJson([
 			'deleted'=>true	
 		]);
@@ -76,5 +80,65 @@ class BitemTest extends TestCase
 		$item = $item->fresh();
 		$this->assertEquals($user->id, $item->user_id);
 		$this->assertEquals($user, $item->user);
+	}
+
+
+	/** @test */
+	public function a_user_cannot_view_another_users_bitem()
+	{
+		$this->withoutExceptionHandling();
+	   	$user1 = factory(User::class)->create(); 
+		$user2 = factory(User::class)->create();
+		$user2 = $user2->fresh();
+		$user1 = $user1->fresh();
+		$transaction = factory(Bitem::class)->create([
+			'user_id'=>$user1->id	
+		]);
+		$this->assertFalse($user2->can('view', $transaction));
+		$this->assertTrue($user1->can('view', $transaction));
+	}
+
+	/** @test */
+	public function a_user_cannot_update_another_users_bitem()
+	{
+		$this->withoutExceptionHandling();
+	   	$user1 = factory(User::class)->create(); 
+		$user2 = factory(User::class)->create();
+		$user2 = $user2->fresh();
+		$user1 = $user1->fresh();
+		$transaction = factory(Bitem::class)->create([
+			'user_id'=>$user1->id	
+		]);
+		$this->assertFalse($user2->can('update', $transaction));
+		$this->assertTrue($user1->can('update', $transaction));
+	}
+
+	/** @test */
+	public function a_user_cannot_delete_another_users_bitem()
+	{
+		$this->withoutExceptionHandling();
+	   	$user1 = factory(User::class)->create(); 
+		$user2 = factory(User::class)->create();
+		$user2 = $user2->fresh();
+		$user1 = $user1->fresh();
+		$transaction = factory(Bitem::class)->create([
+			'user_id'=>$user1->id	
+		]);
+		$this->assertFalse($user2->can('delete', $transaction));
+		$this->assertTrue($user1->can('delete', $transaction));
+	}
+
+	/** @test */
+	
+	public function a_user_cannot_view_another_users_bitems()
+	{
+	    
+		$user = factory(User::class)->create();
+		$user1 = factory(User::class)->create();
+		$transaction = factory(Bitem::class)->create([
+			'user_id'=>$user1->id	
+		]);
+		$response = $this->actingAs($user)->json('GET', 'api/bitem');
+		$response->assertExactJson([]);
 	}
 }

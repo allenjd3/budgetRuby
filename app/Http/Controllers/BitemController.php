@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class BitemController extends Controller
 {
+	public function __construct()
+	{
+	   	$this->middleware('auth'); 
+	}
     public function index()
     {
-        return Bitem::all();
+        return Bitem::onlyUser(auth()->user())->get();
     } 
 
 	public function show($id)
