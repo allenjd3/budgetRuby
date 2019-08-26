@@ -9,6 +9,9 @@
                     {{ session('status') }}
                 </div>
             @endif
+            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+				<budget-component class="p-4" :budget_month="budget_month" :budget_year="budget_year"></budget-component>
+            </div>
 
             <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
 				<item-component class="p-4" v-bind:food-items="foodItems" v-bind:transportation-items="transportationItems"></item-component>
@@ -21,6 +24,9 @@
 			</div>
 			<div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
 				<transaction-creation-component class="p-4"> </transaction-creation-component>
+			</div>
+			<div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+				<budget-creation-component class="p-4"> </budget-creation-component>
 			</div>
         </div>
     </div>

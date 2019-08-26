@@ -10,6 +10,10 @@
 				<label for="planned" class="w-1/4 inline-block text-right pr-2 text-gray-800 font-bold">Planned:</label>
 				<input id="planned" type="text" class="border border-gray-400 p-2 w-3/4"/>	
 			</div>	
+			<div class="my-4 flex items-center">
+				<label for="category" class="w-1/4 inline-block text-right pr-2 text-gray-800 font-bold">Category:</label>
+				<input id="category" type="text" class="border border-gray-400 p-2 w-3/4"/>	
+			</div>	
 			<div class="my-4 flex items-center h-8">
 				<div class="w-1/4">
 				</div>

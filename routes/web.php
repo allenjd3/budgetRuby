@@ -26,3 +26,8 @@ Route::get('/api/bitem', 'BitemController@index');
 Route::get('/api/{id}/bitem', 'BitemController@show');
 Route::put('/api/{id}/bitem', 'BitemController@update');
 Route::delete('/api/{id}/bitem', 'BitemController@delete');
+Route::get('/api/budget', 'BudgetController@index');
+Route::get('/api/{id}/budget', 'BudgetController@show');
+Route::put('/api/{id}/budget', 'BudgetController@update');
+Route::delete('/api/{id}/budget', 'BudgetController@delete');
+

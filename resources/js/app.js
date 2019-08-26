@@ -24,7 +24,8 @@ Vue.component('item-component', require('./components/ItemComponent.vue').defaul
 Vue.component('transaction-component', require('./components/TransactionComponent.vue').default);
 Vue.component('item-creation-component', require('./components/ItemCreationComponent.vue').default);
 Vue.component('transaction-creation-component', require('./components/TransactionCreationComponent.vue').default);
-
+Vue.component('budget-creation-component', require('./components/BudgetCreationComponent.vue').default);
+Vue.component('budget-component', require('./components/BudgetComponent.vue').default);
 
 Vue.filter('monies', function(value) {
 	let money = (value/100).toFixed(2);
@@ -52,7 +53,9 @@ const app = new Vue({
 			{id : 1, name:'Kroger', amount:12334, added_at:'2019/10/31', bitem_id: 1 },
 			{id : 2, name:'Walmart', amount:1234, added_at:'2019/10/31', bitem_id: 1 },
 			{id : 3, name:'Sam\'s club', amount:5732, added_at:'2019/10/31', bitem_id:2 }		
-		]
+		],
+		budget_month : 'October',
+		budget_year : 2019
 	},
 	
 });
