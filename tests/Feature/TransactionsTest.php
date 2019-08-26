@@ -34,9 +34,10 @@ class TransactionsTest extends TestCase
 	/** @test */
 	public function a_user_can_create_a_transaction()
 	{
-		$this->withoutMiddleware();
+		$this->withoutExceptionHandling();
+		$user = factory(User::class)->create();
 	    $transaction = factory(Transaction::class)->make();    
-		$response = $this->json('POST', 'api/transaction', $transaction->toArray());	
+		$response = $this->actingAs($user)->json('POST', 'api/transaction', $transaction->toArray());	
 		$response->assertStatus(201);
 		$response->assertJson([
 			'created'=>true,

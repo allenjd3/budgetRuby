@@ -26,11 +26,19 @@ class TransactionController extends Controller
 
 	public function store(Request $request)
 	{
-	   $transaction = Transaction::create($request->all()); 
-	   return response()->json([
-	   		'created'=>true,
-			'transaction'=>$transaction
-	   ], 201);
+		$user = auth()->user();
+		$transaction = new Transaction();	
+		$transaction->name = $request->name;
+		$transaction->amount = $request->amount;
+		$transaction->added_at = $request->added_at;
+		$transaction->bitem_id = $request->bitem_id;
+		$transaction->user_id = $user->id;
+		if($transaction->save()){
+				return response()->json([
+	   				'created'=>true,
+					'transaction'=>$transaction
+	   			], 201);
+		}
 	}
 
 	public function delete($id)
