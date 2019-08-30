@@ -30,4 +30,4 @@ Route::get('/api/budget', 'BudgetController@index');
 Route::get('/api/{id}/budget', 'BudgetController@show');
 Route::put('/api/{id}/budget', 'BudgetController@update');
 Route::delete('/api/{id}/budget', 'BudgetController@delete');
-
+Route::post('/api/budget', 'BudgetController@store');

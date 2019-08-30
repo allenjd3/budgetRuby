@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class BudgetController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');	
+	}
 	public function index()
 	{
 	   	return Budget::all(); 
@@ -23,7 +26,6 @@ class BudgetController extends Controller
 		$budget= Budget::findOrFail($id);
 		$budget->month = $request->month;
 		$budget->year = $request->year;
-		$budget->bitems = $request->bitems;
 		
 		if($budget->save())
 		{
@@ -44,4 +46,20 @@ class BudgetController extends Controller
 				]);
 		}
 	}
+
+	public function store(Request $request)
+	{
+			$budget = new Budget();
+			$user = auth()->user();
+			$budget->month = $request->month;
+			$budget->year = $request->year;	
+			$budget->user_id = $user->id;
+			if($budget->save()){
+					$budgetSchema =  $user->budgetSchema;
+					if($budgetSchema->newMonth($budget, $user)) {
+						return response()->json(['created'=>true]);	
+					} 	
+			}
+			return response()->json(['created'=>false]);
+ 	}
 }

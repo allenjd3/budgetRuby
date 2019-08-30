@@ -1705,8 +1705,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['budget_month', 'budget_year']
+  props: ['budget_month', 'budget_year', 'budget_first']
 });
 
 /***/ }),
@@ -19558,31 +19563,35 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._v("\n\t\t\tBudget: "),
-    _c("span", { staticClass: "font-bold" }, [
-      _vm._v(_vm._s(_vm.budget_month) + " " + _vm._s(_vm.budget_year))
-    ]),
+    !_vm.budget_first
+      ? _c("div", [
+          _vm._v("\n\t\t\t\t\tBudget: "),
+          _c("span", { staticClass: "font-bold" }, [
+            _vm._v(_vm._s(_vm.budget_month) + " " + _vm._s(_vm.budget_year))
+          ])
+        ])
+      : _vm._e(),
     _vm._v(" "),
-    _c(
-      "a",
-      {
-        staticClass: "px-4 py-2 rounded bg-blue-800 text-blue-100",
-        attrs: { href: "" }
-      },
-      [_vm._v("Previous")]
-    ),
-    _vm._v(" "),
-    _c(
-      "a",
-      {
-        staticClass: "px-4 py-2 rounded bg-blue-800 text-blue-100",
-        attrs: { href: "" }
-      },
-      [_vm._v("Next")]
-    )
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-8" }, [
+      _c(
+        "a",
+        {
+          staticClass: "px-4 py-2 rounded bg-blue-800 text-blue-100",
+          attrs: { href: "" }
+        },
+        [_vm._v("Create New Budget")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -19,6 +19,7 @@ class CreateBitemTable extends Migration
 			$table->integer('budget');
 			$table->string('category');
 			$table->integer('user_id');
+			$table->integer('budget_id');
             $table->timestamps();
         });
     }

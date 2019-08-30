@@ -10,7 +10,8 @@ $factory->define(Bitem::class, function (Faker $faker) {
 			'name'=>$faker->name,
 		    'budget'=>rand(1, 200000),
 			'user_id'=>1,
-			'category'=>'groceries'
+			'category'=>'groceries',
+			'budget_id'=>1
 				
     ];
 });

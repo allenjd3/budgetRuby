@@ -2,9 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Bitem;
 use App\Budget;
+use App\BudgetSchema;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -67,5 +70,17 @@ class BudgetTest extends TestCase
 		$request->assertJson([
 			'deleted'=>true	
 		]);
+	}
+	/** @test */
+	public function a_user_can_store_a_budget()
+	{
+			$this->withoutExceptionHandling();
+			$user = factory(User::class)->create();
+			$schema = factory(BudgetSchema::class)->create();
+			$bitem = factory(Bitem::class, 3)->create();
+			$request = $this->actingAs($user)->json('post', '/api/budget', ['month'=>10, 'year'=>2019]);
+			$request->assertJson([
+					'created'=>true,
+			]);
 	}
 }

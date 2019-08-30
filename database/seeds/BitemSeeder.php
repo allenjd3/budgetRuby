@@ -1,0 +1,115 @@
+<?php
+
+use App\Bitem;
+use Illuminate\Database\Seeder;
+
+class BitemSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+			Bitem::create([
+					'name'=>'Groceries',
+					'budget'=>52000,
+					'user_id'=>1,
+					'category'=>'Food',
+					'budget_id'=>1	
+			]);
+			
+			Bitem::create([
+					'name'=>'Restaurants',
+					'budget'=>12000,
+					'user_id'=>1,
+					'category'=>'Food',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Toiletries',
+					'budget'=>7500,
+					'user_id'=>1,
+					'category'=>'Food',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Charity',
+					'budget'=>10000,
+					'user_id'=>1,
+					'category'=>'Giving',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Emergency',
+					'budget'=>10000,
+					'user_id'=>1,
+					'category'=>'Savings',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Mortgage',
+					'budget'=>70000,
+					'user_id'=>1,
+					'category'=>'Housing',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Electricity',
+					'budget'=>15000,
+					'user_id'=>1,
+					'category'=>'Housing',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Cable/Internet',
+					'budget'=>7000,
+					'user_id'=>1,
+					'category'=>'Housing',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Trash',
+					'budget'=>6000,
+					'user_id'=>1,
+					'category'=>'Housing',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Gas',
+					'budget'=>6000,
+					'user_id'=>1,
+					'category'=>'Transportation',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Entertainment',
+					'budget'=>6000,
+					'user_id'=>1,
+					'category'=>'Lifestyle',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Miscellaneous',
+					'budget'=>6000,
+					'user_id'=>1,
+					'category'=>'Lifestyle',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Medicine',
+					'budget'=>6000,
+					'user_id'=>1,
+					'category'=>'Health',
+					'budget_id'=>1	
+			]);
+			Bitem::create([
+					'name'=>'Life Insurance',
+					'budget'=>6000,
+					'user_id'=>1,
+					'category'=>'Insurance',
+					'budget_id'=>1	
+			]);
+    }
+}
