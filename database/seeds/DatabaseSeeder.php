@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
          $this->call(BitemSeeder::class);
          $this->call(UserSeeder::class);
          $this->call(BudgetSeeder::class);
+		 $this->call(BudgetSchemaSeeder::class);
     }
 }

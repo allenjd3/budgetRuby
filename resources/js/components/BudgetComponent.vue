@@ -6,7 +6,7 @@
 					<a href="" class="px-4 py-2 rounded bg-blue-800 text-blue-100">Next</a>
 -->			</div>
 			<div class="mt-8">
-				<a href="" class="px-4 py-2 rounded bg-blue-800 text-blue-100">Create New Budget</a>
+				<a href="" @click="" class="px-4 py-2 rounded bg-blue-800 text-blue-100">Create New Budget</a>
 			</div>
     </div>
 </template>

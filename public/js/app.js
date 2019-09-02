@@ -19572,26 +19572,20 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-8" }, [
+    _c("div", { staticClass: "mt-8" }, [
       _c(
         "a",
         {
           staticClass: "px-4 py-2 rounded bg-blue-800 text-blue-100",
-          attrs: { href: "" }
+          attrs: { href: "" },
+          on: { click: function($event) {} }
         },
         [_vm._v("Create New Budget")]
       )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

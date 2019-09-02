@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Bitem;
+use App\Budget;
+use App\BudgetSchema;
 use App\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,10 +67,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+	   $budgetschema1 = BudgetSchema::first();
+	   $budgetschema = new BudgetSchema();	
+       $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+		$budget = new Budget();
+		$budget->month = Carbon::now()->month;
+		$budget->year = Carbon::now()->year;
+		$budget->user_id = $user->id;	
+		$budget->save();
+		$bitems = [];
+		foreach($budgetschema1->bitems as $id){
+			$bitem = Bitem::find($id);
+			$newBitem = new Bitem();
+			$newBitem->name = $bitem->name;
+			$newBitem->budget = $bitem->budget;
+			$newBitem->category = $bitem->category;
+			$newBitem->user_id = $user->id;
+			$newBitem->budget_id = $budget->id;	
+			if($newBitem->save()){
+				$bitems[] = $newBitem->id;
+			//	$budgetschema->bitems[] = $newBitem->id;			
+			}
+
+		}
+		$budgetschema->bitems = $bitems;
+
+	   $budgetschema->user_id = $user->id;
+	   if($budgetschema->save())
+	   {
+			return $user;
+	   }
     }
 }
