@@ -8,8 +8,8 @@
 			</tr>
 			<tr class="flex justify-between" v-for="item in foodItems" v-bind:key="item.id">
 				<td class="flex-grow text-left">{{item.name}}</td>
-				<td class="w-32 text-center">{{item.planned | monies}}</td>
-				<td class="w-32 text-center font-bold" :class="receivedColor(item)">{{item.received | monies}}</td>
+				<td class="w-32 text-center">{{Number(item.budget) | monies}}</td>
+				<td class="w-32 text-center font-bold" :class="receivedColor(item)">$0.00</td>
 			</tr>
 			<tr class="flex justify-between">
 				<th class="flex-grow text-left py-4">Transportation</th>

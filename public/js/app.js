@@ -19737,7 +19737,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(item.planned)))
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
               ]),
               _vm._v(" "),
               _c(
@@ -19746,7 +19746,7 @@ var render = function() {
                   staticClass: "w-32 text-center font-bold",
                   class: _vm.receivedColor(item)
                 },
-                [_vm._v(_vm._s(_vm._f("monies")(item.received)))]
+                [_vm._v("$0.00")]
               )
             ]
           )
@@ -32267,19 +32267,7 @@ Vue.filter('monies', function (value) {
 var app = new Vue({
   el: '#app',
   data: {
-    foodItems: [{
-      id: 1,
-      name: 'restaurants',
-      category: 'food',
-      planned: 12500,
-      received: 12423
-    }, {
-      id: 3,
-      name: 'grocery',
-      category: 'food',
-      planned: 13000,
-      received: 13143
-    }],
+    foodItems: [],
     transportationItems: [{
       id: 2,
       name: 'gas',
@@ -32308,6 +32296,18 @@ var app = new Vue({
     }],
     budget_month: 'October',
     budget_year: 2019
+  },
+  methods: {
+    getFoodItems: function getFoodItems() {
+      var _this = this;
+
+      axios.get('api/bitem/Food/category').then(function (res) {
+        _this.foodItems = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getFoodItems();
   }
 });
 

@@ -45,5 +45,13 @@ class BitemController extends Controller
 				]);
 		}
 	}
+
+	public function category($category)
+	{
+	   $items = Bitem::onlyUser(auth()->user())->where('category', $category)->get(); 
+
+	   return response()->json([$category => $items]);
+	}
 }
+
 

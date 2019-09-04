@@ -141,4 +141,26 @@ class BitemTest extends TestCase
 		$response = $this->actingAs($user)->json('GET', 'api/bitem');
 		$response->assertExactJson([]);
 	}
+
+	/** @test */
+	public function a_user_can_view_bitems_by_category()
+	{
+		$this->withoutExceptionHandling();
+		$this->withoutMiddleware();
+		$transportations = factory(Bitem::class, 2)->create([
+			'category'=>'transportation'
+		]);
+		$groceries = factory(Bitem::class, 2)->create([
+			'category'=>'groceries'
+		]);
+		$transportations = $transportations->fresh();
+		$groceries = $groceries->fresh();
+
+		$transportationResponse = $this->json('GET', 'api/bitem/transportation/category');		
+		$groceryResponse = $this->json('GET', 'api/bitem/groceries/category');
+
+		$transportationResponse->assertJson(['transportation'=>$transportations->toArray()]);
+		$groceryResponse->assertJson(['groceries'=>$groceries->toArray()]);
+		
+	}
 }

@@ -42,10 +42,7 @@ Vue.filter('monies', function(value) {
 const app = new Vue({
     el: '#app',
 	data: {
-		foodItems: [
-			{id : 1, name: 'restaurants', category: 'food', planned:12500, received: 12423},
-			{id : 3, name: 'grocery', category: 'food', planned: 13000, received: 13143}
-		],
+		foodItems: [],
 		transportationItems: [
 			{id : 2, name: 'gas', category: 'transportation', planned: 15000, received: 20000},
 		],
@@ -57,5 +54,14 @@ const app = new Vue({
 		budget_month : 'October',
 		budget_year : 2019
 	},
-	
+	methods: {
+		getFoodItems() {
+			axios.get('api/bitem/Food/category').then((res)=>{
+				this.foodItems = res.data;
+			});
+		}
+	},	
+	mounted() {
+		this.getFoodItems();
+	}
 });
