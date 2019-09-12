@@ -14,8 +14,9 @@
             </div>
 
             <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
-				<item-component class="p-4" v-bind:food-items="foodItems.Food" v-bind:transportation-items="transportationItems"></item-component>
-			
+				<item-component class="p-4" 
+						v-bind:all-items="allItems"
+				></item-component>
             </div>
 			<div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
 				<transaction-component class="p-4" v-bind:transactions="transactions"></transaction-component>

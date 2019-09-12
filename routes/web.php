@@ -32,3 +32,4 @@ Route::put('/api/{id}/budget', 'BudgetController@update');
 Route::delete('/api/{id}/budget', 'BudgetController@delete');
 Route::post('/api/budget', 'BudgetController@store');
 Route::get('/api/bitem/{category}/category', 'BitemController@category');
+Route::get('/api/bitem/allcategories', 'BitemController@allcategories');

@@ -15,9 +15,13 @@ class Bitem extends Model
 	{
 	   	return $this->belongsTo(User::class); 
 	}
-   public function scopeOnlyUser($query, $user)
-   {
+    public function scopeOnlyUser($query, $user)
+    {
 
-		  return $query->where('user_id', $user->id);
-   }
+  		  return $query->where('user_id', $user->id);
+    }
+    public function setCategoryAttribute($value)
+    {
+        $this->attributes['category'] = strtolower($value);
+    }	
 }

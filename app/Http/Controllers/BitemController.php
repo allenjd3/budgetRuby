@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bitem;
+use App\Http\Resources\BitemResource;
 use Illuminate\Http\Request;
 
 class BitemController extends Controller
@@ -52,6 +53,11 @@ class BitemController extends Controller
 
 	   return response()->json([$category => $items]);
 	}
-}
 
+	public function allcategories()
+	{
+	   	$items = Bitem::onlyUser(auth()->user())->get(); 
+		return new BitemResource($items);
+	}
+}
 

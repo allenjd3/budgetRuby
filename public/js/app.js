@@ -1817,8 +1817,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['foodItems', 'transportationItems'],
+  props: ['allItems'],
   methods: {
     receivedColor: function receivedColor(item) {
       if (item.received > item.planned) {
@@ -19727,7 +19787,7 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _vm._l(_vm.foodItems, function(item) {
+        _vm._l(_vm.allItems.food, function(item) {
           return _c(
             "tr",
             { key: item.id, staticClass: "flex justify-between" },
@@ -19754,7 +19814,7 @@ var render = function() {
         _vm._v(" "),
         _vm._m(1),
         _vm._v(" "),
-        _vm._l(_vm.transportationItems, function(item) {
+        _vm._l(_vm.allItems.transportation, function(item) {
           return _c(
             "tr",
             { key: item.id, staticClass: "flex justify-between" },
@@ -19764,7 +19824,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(item.planned)))
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
               ]),
               _vm._v(" "),
               _c(
@@ -19773,7 +19833,169 @@ var render = function() {
                   staticClass: "w-32 text-center font-bold",
                   class: _vm.receivedColor(item)
                 },
-                [_vm._v(_vm._s(_vm._f("monies")(item.received)))]
+                [_vm._v("$0.00")]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._l(_vm.allItems.giving, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
+                },
+                [_vm._v("$0.00")]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._l(_vm.allItems.savings, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
+                },
+                [_vm._v("$0.00")]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._l(_vm.allItems.housing, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
+                },
+                [_vm._v("$0.00")]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _vm._l(_vm.allItems.lifestyle, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
+                },
+                [_vm._v("$0.00")]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm._m(6),
+        _vm._v(" "),
+        _vm._l(_vm.allItems.health, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
+                },
+                [_vm._v("$0.00")]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._l(_vm.allItems.insurance, function(item) {
+          return _c(
+            "tr",
+            { key: item.id, staticClass: "flex justify-between" },
+            [
+              _c("td", { staticClass: "flex-grow text-left" }, [
+                _vm._v(_vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "w-32 text-center" }, [
+                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "w-32 text-center font-bold",
+                  class: _vm.receivedColor(item)
+                },
+                [_vm._v("$0.00")]
               )
             ]
           )
@@ -19803,6 +20025,86 @@ var staticRenderFns = [
     return _c("tr", { staticClass: "flex justify-between" }, [
       _c("th", { staticClass: "flex-grow text-left py-4" }, [
         _vm._v("Transportation")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [_vm._v("Giving")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [
+        _vm._v("Savings")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [
+        _vm._v("Housing")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [
+        _vm._v("LifeStyle")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [_vm._v("Health")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "flex justify-between" }, [
+      _c("th", { staticClass: "flex-grow text-left py-4" }, [
+        _vm._v("Insurance")
       ]),
       _vm._v(" "),
       _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
@@ -32267,14 +32569,7 @@ Vue.filter('monies', function (value) {
 var app = new Vue({
   el: '#app',
   data: {
-    foodItems: [],
-    transportationItems: [{
-      id: 2,
-      name: 'gas',
-      category: 'transportation',
-      planned: 15000,
-      received: 20000
-    }],
+    allItems: [],
     transactions: [{
       id: 1,
       name: 'Kroger',
@@ -32298,16 +32593,16 @@ var app = new Vue({
     budget_year: 2019
   },
   methods: {
-    getFoodItems: function getFoodItems() {
+    getAllItems: function getAllItems() {
       var _this = this;
 
-      axios.get('api/bitem/Food/category').then(function (res) {
-        _this.foodItems = res.data;
+      axios.get('api/bitem/allcategories').then(function (res) {
+        _this.allItems = res.data;
       });
     }
   },
   mounted: function mounted() {
-    this.getFoodItems();
+    this.getAllItems();
   }
 });
 
