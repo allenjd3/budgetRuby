@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bitem;
+use App\Budget;
 use App\Http\Resources\BitemResource;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,23 @@ class BitemController extends Controller
 		return Bitem::findOrFail($id);
 
 	}
+	public function store(Request $request)
+	{
+		$user = auth()->user();
+	   	$bitem = new Bitem();	 
+		$bitem->budget = $request->budget;
+		$bitem->name = $request->name;
+		$bitem->category = $request->category;
+		$bitem->user_id = $user->id;
+		$budget=Budget::onlyUser($user)->latest('updated_at')->first();
+		$bitem->budget_id =	$budget->id; 
+		if($bitem->save()){
+			return response()->json([
+					'created'=>true
+			]);
+		}
+	}
+
 
 	public function update(Request $request, $id)
 	{

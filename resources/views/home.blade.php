@@ -10,7 +10,7 @@
                 </div>
             @endif
             <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
-				<budget-component class="p-4":budget_first="false" :budget_month="budget_month" :budget_year="budget_year"></budget-component>
+				<budget-component class="p-4":budget_first="false" :budget_month="{{$budget_month}}" :budget_year="{{$budget_year}}"></budget-component>
             </div>
 
             <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">

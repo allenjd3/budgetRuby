@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Bitem;
+use App\Budget;
 use App\Transaction;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -145,8 +146,6 @@ class BitemTest extends TestCase
 	/** @test */
 	public function a_user_can_view_bitems_by_category()
 	{
-		$this->withoutExceptionHandling();
-		$this->withoutMiddleware();
 		$user = factory(User::class)->create();
 		$user->refresh();
 	
@@ -166,6 +165,24 @@ class BitemTest extends TestCase
 
 		$transportationResponse->assertJson(['transportation'=>$transportations->toArray()]);
 		$groceryResponse->assertJson(['groceries'=>$groceries->toArray()]);
-		
+	}		
+	
+
+	/** @test */
+	public function a_user_can_create_a_bitem()
+	{
+			$this->withoutExceptionHandling();
+	   		$user = factory(User::class)->create(); 
+			$user->refresh();
+			$budget = factory(Budget::class)->create([
+				'user_id'=>$user->id
+			]);
+			$response = $this->actingAs($user)->json('POST', 'api/bitem', [
+					"budget"=>2000, 
+					"category"=>"Housing", 
+					"name"=>"maintanence", 
+					"budget_id"=>1
+			]);
+			$response->assertJson(['created'=>true]);
 	}
 }

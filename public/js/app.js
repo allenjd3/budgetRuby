@@ -1710,8 +1710,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['budget_month', 'budget_year', 'budget_first']
+  data: function data() {
+    return {
+      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    };
+  },
+  props: ['budget_month', 'budget_year', 'budget_first', 'budget_next_month'],
+  methods: {
+    getMonthName: function getMonthName(month) {
+      return this.months[month - 1];
+    },
+    getNextMonthName: function getNextMonthName(month) {
+      return this.months[month];
+    },
+    getNextMonthNumber: function getNextMonthNumber(month) {
+      return month + 1;
+    },
+    startNextMonth: function startNextMonth(e) {
+      e.preventDefault();
+      axios.post('/api/budget', {
+        month: this.getNextMonthNumber(this.budget_month),
+        year: this.calculateYear(this.budget_year)
+      }).then(function (res) {
+        console.log(res.data);
+      });
+    },
+    calculateYear: function calculateYear(year) {
+      if (this.budget_month === 12) {
+        return this.budget_year + 1;
+      } else {
+        return this.budget_year;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -1860,7 +1894,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: "",
+      budget: "",
+      category: ""
+    };
+  },
+  methods: {
+    submitItem: function submitItem() {
+      axios.post('/api/bitem', {
+        name: this.name,
+        budget: this.budget,
+        category: this.category
+      }).then(function (res) {
+        console.log(res.data);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -19559,7 +19622,11 @@ var render = function() {
       ? _c("div", [
           _vm._v("\n\t\t\t\t\tBudget: "),
           _c("span", { staticClass: "font-bold" }, [
-            _vm._v(_vm._s(_vm.budget_month) + " " + _vm._s(_vm.budget_year))
+            _vm._v(
+              _vm._s(_vm.getMonthName(_vm.budget_month)) +
+                " " +
+                _vm._s(_vm.budget_year)
+            )
           ])
         ])
       : _vm._e(),
@@ -19572,7 +19639,17 @@ var render = function() {
           attrs: { href: "" },
           on: { click: function($event) {} }
         },
-        [_vm._v("Create New Budget")]
+        [_vm._v("Show All Budgets")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "px-4 py-2 rounded bg-blue-800 text-blue-100",
+          attrs: { href: "" },
+          on: { click: _vm.startNextMonth }
+        },
+        [_vm._v("Start " + _vm._s(_vm.getNextMonthName(_vm.budget_month)))]
       )
     ])
   ])
@@ -19782,19 +19859,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-2/3 mx-auto" }, [
-      _c("h3", { staticClass: "text-xl text-center" }, [
-        _vm._v("Item Creation")
-      ]),
-      _vm._v(" "),
-      _c("form", { staticClass: "flex flex-col" }, [
+  return _c("div", { staticClass: "w-2/3 mx-auto" }, [
+    _c("h3", { staticClass: "text-xl text-center" }, [_vm._v("Item Creation")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "flex flex-col",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submitItem($event)
+          }
+        }
+      },
+      [
         _c("div", { staticClass: "my-4 flex items-center" }, [
           _c(
             "label",
@@ -19807,8 +19886,25 @@ var staticRenderFns = [
           ),
           _vm._v(" "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
             staticClass: "border border-gray-400 p-2 w-3/4",
-            attrs: { id: "name", type: "text" }
+            attrs: { id: "name", type: "text" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
           })
         ]),
         _vm._v(" "),
@@ -19818,14 +19914,31 @@ var staticRenderFns = [
             {
               staticClass:
                 "w-1/4 inline-block text-right pr-2 text-gray-800 font-bold",
-              attrs: { for: "planned" }
+              attrs: { for: "budget" }
             },
             [_vm._v("Planned:")]
           ),
           _vm._v(" "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.budget,
+                expression: "budget"
+              }
+            ],
             staticClass: "border border-gray-400 p-2 w-3/4",
-            attrs: { id: "planned", type: "text" }
+            attrs: { id: "budget", type: "text" },
+            domProps: { value: _vm.budget },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.budget = $event.target.value
+              }
+            }
           })
         ]),
         _vm._v(" "),
@@ -19840,23 +19953,83 @@ var staticRenderFns = [
             [_vm._v("Category:")]
           ),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "border border-gray-400 p-2 w-3/4",
-            attrs: { id: "category", type: "text" }
-          })
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.category,
+                  expression: "category"
+                }
+              ],
+              staticClass: "border border-gray-400 bg-white p-2 w-3/4",
+              attrs: { id: "category" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.category = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "Food" } }, [_vm._v("Food")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Giving" } }, [_vm._v("Giving")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Savings" } }, [
+                _vm._v("Savings")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Housing" } }, [
+                _vm._v("Housing")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Lifestyle" } }, [
+                _vm._v("Lifestyle")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Insurance" } }, [
+                _vm._v("Insurance")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Health" } }, [_vm._v("Health")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Transportation" } }, [
+                _vm._v("Transportation")
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-4 flex items-center h-8" }, [
-          _c("div", { staticClass: "w-1/4" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-3/4" }, [
-            _c("input", {
-              staticClass:
-                "rounded py-2 px-4 bg-blue-800 text-gray-100 font-bold",
-              attrs: { type: "submit", value: "Add Item" }
-            })
-          ])
-        ])
+        _vm._m(0)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "my-4 flex items-center h-8" }, [
+      _c("div", { staticClass: "w-1/4" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-3/4" }, [
+        _c("input", {
+          staticClass: "rounded py-2 px-4 bg-blue-800 text-gray-100 font-bold",
+          attrs: { type: "submit", value: "Add Item" }
+        })
       ])
     ])
   }

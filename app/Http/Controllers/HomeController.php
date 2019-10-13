@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Budget;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+		$budget = Budget::latest('updated_at')->first();
+		$budget_month = $budget->month;
+		$budget_year = $budget->year;
+		
+        return view('home', compact('budget_month', 'budget_year'));
     }
 }

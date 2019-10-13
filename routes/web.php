@@ -23,6 +23,7 @@ Route::post('/api/transaction', 'TransactionController@store');
 Route::delete('api/{id}/transaction', 'TransactionController@delete');
 Route::put('/api/{id}/transaction', 'TransactionController@update');
 Route::get('/api/bitem', 'BitemController@index');
+Route::post('/api/bitem', 'BitemController@store');
 Route::get('/api/{id}/bitem', 'BitemController@show');
 Route::put('/api/{id}/bitem', 'BitemController@update');
 Route::delete('/api/{id}/bitem', 'BitemController@delete');
