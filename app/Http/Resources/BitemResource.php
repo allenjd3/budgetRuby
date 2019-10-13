@@ -15,14 +15,14 @@ class BitemResource extends JsonResource
     public function toArray($request)
     {
 			return [
-					'food'=>$this->where('category','food')->toArray(),
-					'giving'=>$this->where('category','giving')->toArray(),
-					'savings'=>$this->where('category','savings')->toArray(),
-					'housing'=>$this->where('category','housing')->toArray(),
-					'lifestyle'=>$this->where('category','lifestyle')->toArray(),
-					'insurance'=>$this->where('category','insurance')->toArray(),
-					'health'=>$this->where('category','health')->toArray(),
-					'transportation'=>$this->where('category','transportation')->toArray()
+					['category'=>$this->where('category','food')->toArray(), 'title'=>'Food'],
+					['category'=>$this->where('category','giving')->toArray(), 'title'=>'Giving'],
+					['category'=>$this->where('category','savings')->toArray(), 'title'=>'Savings'],
+					['category'=>$this->where('category','housing')->toArray(), 'title'=>'Housing'],
+					['category'=>$this->where('category','lifestyle')->toArray(), 'title'=>'Lifestyle'],
+					['category'=>$this->where('category','insurance')->toArray(), 'title'=>'Insurance'],
+					['category'=>$this->where('category','health')->toArray(), 'title'=>'Health'],
+					['category'=>$this->where('category','transportation')->toArray(), 'title'=>'Transportation']
 			];
 					
     }

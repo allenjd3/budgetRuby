@@ -1809,74 +1809,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['allItems'],
   methods: {
@@ -19785,334 +19717,50 @@ var render = function() {
       "table",
       { staticClass: "w-full" },
       [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.food, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
+        _vm._l(_vm.allItems, function(i) {
+          return [
+            _c("tr", { staticClass: "flex justify-between" }, [
+              _c("th", { staticClass: "flex-grow text-left py-4" }, [
+                _vm._v(_vm._s(i.title))
               ]),
               _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
+              _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
               _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
+              _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
+            ]),
+            _vm._v(" "),
+            _vm._l(i.category, function(item) {
+              return _c(
+                "tr",
+                { key: item.id, staticClass: "flex justify-between" },
+                [
+                  _c("td", { staticClass: "flex-grow text-left" }, [
+                    _vm._v(_vm._s(item.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "w-32 text-center" }, [
+                    _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "w-32 text-center font-bold",
+                      class: _vm.receivedColor(item)
+                    },
+                    [_vm._v("$0.00")]
+                  )
+                ]
               )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.transportation, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.giving, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(3),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.savings, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(4),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.housing, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(5),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.lifestyle, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(6),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.health, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _vm._m(7),
-        _vm._v(" "),
-        _vm._l(_vm.allItems.insurance, function(item) {
-          return _c(
-            "tr",
-            { key: item.id, staticClass: "flex justify-between" },
-            [
-              _c("td", { staticClass: "flex-grow text-left" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "w-32 text-center" }, [
-                _vm._v(_vm._s(_vm._f("monies")(Number(item.budget))))
-              ]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass: "w-32 text-center font-bold",
-                  class: _vm.receivedColor(item)
-                },
-                [_vm._v("$0.00")]
-              )
-            ]
-          )
+            })
+          ]
         })
       ],
       2
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [_vm._v("Food")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [
-        _vm._v("Transportation")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [_vm._v("Giving")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [
-        _vm._v("Savings")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [
-        _vm._v("Housing")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [
-        _vm._v("LifeStyle")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [_vm._v("Health")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "flex justify-between" }, [
-      _c("th", { staticClass: "flex-grow text-left py-4" }, [
-        _vm._v("Insurance")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Planned")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "w-32 py-4" }, [_vm._v("Actual")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

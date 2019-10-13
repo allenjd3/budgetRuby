@@ -147,17 +147,22 @@ class BitemTest extends TestCase
 	{
 		$this->withoutExceptionHandling();
 		$this->withoutMiddleware();
+		$user = factory(User::class)->create();
+		$user->refresh();
+	
 		$transportations = factory(Bitem::class, 2)->create([
-			'category'=>'transportation'
+			'category'=>'transportation',
+			'user_id'=>$user->id
 		]);
 		$groceries = factory(Bitem::class, 2)->create([
-			'category'=>'groceries'
+				'category'=>'groceries',
+				'user_id'=>$user->id
 		]);
 		$transportations = $transportations->fresh();
 		$groceries = $groceries->fresh();
 
-		$transportationResponse = $this->json('GET', 'api/bitem/transportation/category');		
-		$groceryResponse = $this->json('GET', 'api/bitem/groceries/category');
+		$transportationResponse = $this->actingAs($user)->json('GET', 'api/bitem/transportation/category');		
+		$groceryResponse = $this->actingAs($user)->json('GET', 'api/bitem/groceries/category');
 
 		$transportationResponse->assertJson(['transportation'=>$transportations->toArray()]);
 		$groceryResponse->assertJson(['groceries'=>$groceries->toArray()]);
